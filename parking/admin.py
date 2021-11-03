@@ -4,3 +4,4 @@ from django.contrib import admin
 from parking.models import *
 
 admin.site.register(Location)
+admin.site.register(DriverProfile)
