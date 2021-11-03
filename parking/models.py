@@ -47,3 +47,21 @@ class Parking(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Reservation(models.Model):
+    """This defines the structure of a reservation
+
+    Args:
+        models ([type]): [description]
+    """
+    user = models.ForeignKey(Account, related_name="reservations",on_delete=models.PROTECT)
+    parking = models.ForeignKey(Parking, related_name="reservations",on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    car_plate = models.CharField(max_length=3)
+    car_plate_number = models.CharField(max_length=5)
+    car_brand = models.CharField(max_length=100)
+    driver = models.ForeignKey(Account,related_name="driving",on_delete=models.PROTECT)
+    completed = models.BooleanField(default=False)
